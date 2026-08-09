@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { cx } from "@/lib/cx";
+import styles from "./CyclingContent.module.css";
 
 export type CyclingContentItem = {
   title: string;
@@ -20,6 +17,14 @@ type Anim = "idle" | "exit" | "enter";
 type Direction = "next" | "prev";
 
 const TRANSITION_MS = 320;
+
+const panelMotion = {
+  idle: styles.idle,
+  exit_next: styles.exitNext,
+  exit_prev: styles.exitPrev,
+  enter_next: styles.enterNext,
+  enter_prev: styles.enterPrev,
+} as const;
 
 export function CyclingContent({ items }: CyclingContentProps) {
   const [index, setIndex] = useState(0);
@@ -82,27 +87,26 @@ export function CyclingContent({ items }: CyclingContentProps) {
     }, TRANSITION_MS);
   };
 
-  const panelClass = [
-    "cycling-content__panel",
-    `cycling-content__panel--${anim}`,
-    `cycling-content__panel--${direction}`,
-  ].join(" ");
+  const motionClass =
+    anim === "idle"
+      ? panelMotion.idle
+      : panelMotion[`${anim}_${direction}` as Exclude<keyof typeof panelMotion, "idle">];
 
   return (
-    <div className="cycling-content">
+    <div>
       <div className="mt-3 flex items-center gap-3">
         <button
           type="button"
-          className="cycling-content__arrow"
+          className={styles.arrow}
           onClick={() => go("prev")}
           aria-label="Previous"
         >
           &lsaquo;
         </button>
-        <div className="cycling-content__title">
+        <div className={styles.title}>
           <span
             ref={titleMeasureRef}
-            className="cycling-content__title-measure"
+            className={styles.titleMeasure}
             aria-hidden="true"
           >
             {items.map((entry, i) => (
@@ -112,7 +116,7 @@ export function CyclingContent({ items }: CyclingContentProps) {
             ))}
           </span>
           <p
-            className="text-md font-bold opacity-70"
+            className={cx("text-md font-bold opacity-70", styles.titleLabel)}
             style={titleWidth != null ? { width: titleWidth } : undefined}
           >
             {item.title}
@@ -120,7 +124,7 @@ export function CyclingContent({ items }: CyclingContentProps) {
         </div>
         <button
           type="button"
-          className="cycling-content__arrow"
+          className={styles.arrow}
           onClick={() => go("next")}
           aria-label="Next"
         >
@@ -129,12 +133,12 @@ export function CyclingContent({ items }: CyclingContentProps) {
       </div>
       <div
         ref={bodyViewportRef}
-        className="cycling-content__body-viewport"
+        className={styles.bodyViewport}
         style={bodyMinHeight != null ? { minHeight: bodyMinHeight } : undefined}
       >
         <div
           ref={bodyMeasureRef}
-          className="cycling-content__body-measure"
+          className={styles.bodyMeasure}
           aria-hidden="true"
         >
           {items.map((entry, i) => (
@@ -143,7 +147,7 @@ export function CyclingContent({ items }: CyclingContentProps) {
             </div>
           ))}
         </div>
-        <div className={`text-xl ${panelClass}`}>{item.body}</div>
+        <div className={cx("text-xl", motionClass)}>{item.body}</div>
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { cx } from "@/lib/cx";
+import styles from "./StarField.module.css";
+
+type StarTone = "light" | "dark";
 
 /** Deterministic PRNG so star attributes stay stable across resizes. */
 function mulberry32(seed: number) {
@@ -58,11 +62,17 @@ function countForArea(width: number, height: number) {
   );
 }
 
-function StarNodes({ stars }: { stars: Star[] }) {
+function StarNodes({
+  stars,
+  tone,
+}: {
+  stars: Star[];
+  tone: StarTone;
+}) {
   return stars.map((star, i) => (
     <span
       key={i}
-      className="gradient-section__star"
+      className={cx(styles.star, tone === "light" && styles.starLight)}
       style={
         {
           left: `${star.x}%`,
@@ -78,7 +88,12 @@ function StarNodes({ stars }: { stars: Star[] }) {
   ));
 }
 
-export function StarField() {
+type StarFieldProps = {
+  className?: string;
+  tone?: StarTone;
+};
+
+export function StarField({ className, tone = "dark" }: StarFieldProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const farRef = useRef<HTMLDivElement>(null);
   const nearRef = useRef<HTMLDivElement>(null);
@@ -140,7 +155,6 @@ export function StarField() {
     };
 
     const onScroll = () => {
-      // Linear with scroll: grows as the section moves up the viewport.
       scroll.current =
         Math.max(0, -root.getBoundingClientRect().top) * SCROLL_STRENGTH;
       schedule();
@@ -148,7 +162,10 @@ export function StarField() {
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    document.addEventListener("scroll", onScroll, {
+      passive: true,
+      capture: true,
+    });
     onScroll();
     apply();
 
@@ -165,12 +182,16 @@ export function StarField() {
   const nearStars = stars.filter((star) => star.depth >= 0.65);
 
   return (
-    <div ref={rootRef} className="gradient-section__stars" aria-hidden="true">
-      <div ref={farRef} className="gradient-section__stars-layer">
-        <StarNodes stars={farStars} />
+    <div
+      ref={rootRef}
+      className={cx(styles.root, className)}
+      aria-hidden="true"
+    >
+      <div ref={farRef} className={styles.layer}>
+        <StarNodes stars={farStars} tone={tone} />
       </div>
-      <div ref={nearRef} className="gradient-section__stars-layer">
-        <StarNodes stars={nearStars} />
+      <div ref={nearRef} className={styles.layer}>
+        <StarNodes stars={nearStars} tone={tone} />
       </div>
     </div>
   );

@@ -1,0 +1,81 @@
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.35rem;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.arrow:hover {
+  opacity: 1;
+}
+
+.title {
+  position: relative;
+}
+
+.titleMeasure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.titleLabel {
+  text-align: center;
+}
+
+.bodyViewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.bodyMeasure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.idle {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    transform 0.32s ease,
+    opacity 0.32s ease;
+}
+
+.exitNext {
+  transform: translateX(-1.25rem);
+  opacity: 0;
+  transition:
+    transform 0.32s ease,
+    opacity 0.32s ease;
+}
+
+.exitPrev {
+  transform: translateX(1.25rem);
+  opacity: 0;
+  transition:
+    transform 0.32s ease,
+    opacity 0.32s ease;
+}
+
+.enterNext {
+  transform: translateX(1.25rem);
+  opacity: 0;
+  transition: none;
+}
+
+.enterPrev {
+  transform: translateX(-1.25rem);
+  opacity: 0;
+  transition: none;
+}

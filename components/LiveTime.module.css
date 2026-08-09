@@ -1,0 +1,11 @@
+.root {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.clock {
+  display: inline-block;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "./LiveTime.module.css";
 
 function formatParts(date: Date) {
   const datePart = new Intl.DateTimeFormat(undefined, {
@@ -37,7 +38,7 @@ export function LiveTime() {
 
   if (!now) {
     return (
-      <span className="live-time" suppressHydrationWarning>
+      <span className={styles.root} suppressHydrationWarning>
         —
       </span>
     );
@@ -46,9 +47,9 @@ export function LiveTime() {
   const { datePart, clock, suffix } = formatParts(now);
 
   return (
-    <span className="live-time" suppressHydrationWarning>
+    <span className={styles.root} suppressHydrationWarning>
       {datePart},{" "}
-      <span className="live-time__clock" style={{ width: `${clock.length}ch` }}>
+      <span className={styles.clock} style={{ width: `${clock.length}ch` }}>
         {clock}
       </span>
       {suffix}

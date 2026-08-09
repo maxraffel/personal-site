@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { StarField } from "@/components/StarField";
+import { cx } from "@/lib/cx";
+import styles from "./GradientSection.module.css";
 
 /** A CSS color-stop, e.g. `"#e8eef5"`, `"#d4dde8 40%"`, or `"red 0% 20%"`. */
 export type GradientStop = string;
@@ -16,7 +18,7 @@ type GradientSectionProps = ComponentPropsWithoutRef<"section"> & {
   stops: GradientStop[];
   /** Content theme: drives inherited text (and later other) styles. */
   tone: SectionTone;
-  /** Scatter twinkling stars across the section (uses /star.svg via ::before). */
+  /** Scatter twinkling stars across the section. */
   stars?: boolean;
 };
 
@@ -33,20 +35,16 @@ export function GradientSection({
   return (
     <section
       data-tone={tone}
-      className={[
-        "gradient-section",
-        stars ? "gradient-section--stars" : undefined,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx(styles.section, stars && styles.withStars, className)}
       {...props}
       style={{
         ...style,
         backgroundImage: `linear-gradient(${direction}, ${stops.join(", ")})`,
       }}
     >
-      {stars ? <StarField /> : null}
+      {stars ? (
+        <StarField className={styles.starFieldHost} tone={tone} />
+      ) : null}
       {children}
     </section>
   );
@@ -60,10 +58,7 @@ export function SectionContent({
   ...props
 }: SectionContentProps) {
   return (
-    <div
-      className={["section-content", className].filter(Boolean).join(" ")}
-      {...props}
-    >
+    <div className={cx(styles.content, className)} {...props}>
       {children}
     </div>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { cx } from "@/lib/cx";
+import styles from "./RotatingText.module.css";
 
 type RotatingTextProps = {
   words: string[];
@@ -63,27 +65,20 @@ export function RotatingText({
 
   return (
     <span
-      className={[
-        "rotating-text",
-        fixedWidth ? "rotating-text--fixed" : undefined,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={cx(styles.root, fixedWidth && styles.fixed)}
       style={width != null ? { width } : undefined}
       aria-live="polite"
     >
       {fixedWidth ? (
-        <span ref={measureRef} className="rotating-text__measure" aria-hidden="true">
+        <span ref={measureRef} className={styles.measure} aria-hidden="true">
           {words.map((word) => (
-            <span key={word} className="rotating-text__measure-word">
+            <span key={word} className={styles.measureWord}>
               {word}
             </span>
           ))}
         </span>
       ) : null}
-      <span className={`rotating-text__word rotating-text__word--${anim}`}>
-        {words[index]}
-      </span>
+      <span className={cx(styles.word, styles[anim])}>{words[index]}</span>
     </span>
   );
 }
