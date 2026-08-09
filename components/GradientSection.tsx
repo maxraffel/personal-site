@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { StarField } from "@/components/StarField";
 
 /** A CSS color-stop, e.g. `"#e8eef5"`, `"#d4dde8 40%"`, or `"red 0% 20%"`. */
 export type GradientStop = string;
@@ -15,12 +16,15 @@ type GradientSectionProps = ComponentPropsWithoutRef<"section"> & {
   stops: GradientStop[];
   /** Content theme: drives inherited text (and later other) styles. */
   tone: SectionTone;
+  /** Scatter twinkling stars across the section (uses /star.svg via ::before). */
+  stars?: boolean;
 };
 
 export function GradientSection({
   direction = "to bottom",
   stops,
   tone,
+  stars = false,
   className,
   style,
   children,
@@ -29,13 +33,20 @@ export function GradientSection({
   return (
     <section
       data-tone={tone}
-      className={["gradient-section", className].filter(Boolean).join(" ")}
+      className={[
+        "gradient-section",
+        stars ? "gradient-section--stars" : undefined,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       {...props}
       style={{
         ...style,
         backgroundImage: `linear-gradient(${direction}, ${stops.join(", ")})`,
       }}
     >
+      {stars ? <StarField /> : null}
       {children}
     </section>
   );
