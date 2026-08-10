@@ -26,6 +26,21 @@
   border-radius: 0.75rem;
   background: color-mix(in srgb, currentColor 6%, transparent);
   color: inherit;
+  transition:
+    opacity 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.highlighted {
+  border-color: color-mix(in srgb, currentColor 48%, transparent);
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.dimmed {
+  opacity: 0.38;
 }
 
 .cover {
@@ -103,4 +118,10 @@
   font-size: 0.75rem;
   font-weight: 600;
   opacity: 0.85;
+}
+
+.tagActive {
+  opacity: 1;
+  border-color: color-mix(in srgb, currentColor 55%, transparent);
+  background: color-mix(in srgb, currentColor 14%, transparent);
 }

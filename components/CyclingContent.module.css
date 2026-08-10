@@ -44,6 +44,10 @@
   pointer-events: none;
 }
 
+.bodyPanel {
+  display: flow-root;
+}
+
 .idle {
   transform: translateX(0);
   opacity: 1;

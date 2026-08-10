@@ -3,25 +3,6 @@
   display: inline-block;
 }
 
-.trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
-  border-radius: 1.5rem;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  color: inherit;
-  font: inherit;
-  font-size: 1.25rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.trigger:hover {
-  background: color-mix(in srgb, currentColor 14%, transparent);
-}
-
 .caret {
   font-size: 0.85em;
   opacity: 0.7;

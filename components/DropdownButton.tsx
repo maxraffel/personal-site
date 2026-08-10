@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { Button } from "@/components/Button";
 import styles from "./DropdownButton.module.css";
 
 export type DropdownOption = {
@@ -71,9 +72,8 @@ export function DropdownButton({
 
   return (
     <div ref={rootRef} className={styles.root}>
-      <button
+      <Button
         type="button"
-        className={styles.trigger}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={menuId}
@@ -83,7 +83,7 @@ export function DropdownButton({
         <span className={styles.caret} aria-hidden="true">
           {open ? "▴" : "▾"}
         </span>
-      </button>
+      </Button>
       {open ? (
         <ul
           id={menuId}

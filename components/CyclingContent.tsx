@@ -31,7 +31,7 @@ export function CyclingContent({ items }: CyclingContentProps) {
   const [anim, setAnim] = useState<Anim>("idle");
   const [direction, setDirection] = useState<Direction>("next");
   const [titleWidth, setTitleWidth] = useState<number>();
-  const [bodyMinHeight, setBodyMinHeight] = useState<number>();
+  const [bodyHeight, setBodyHeight] = useState<number>();
   const titleMeasureRef = useRef<HTMLSpanElement>(null);
   const bodyMeasureRef = useRef<HTMLDivElement>(null);
   const bodyViewportRef = useRef<HTMLDivElement>(null);
@@ -58,13 +58,16 @@ export function CyclingContent({ items }: CyclingContentProps) {
       for (const child of measure.children) {
         max = Math.max(max, (child as HTMLElement).offsetHeight);
       }
-      setBodyMinHeight(max);
+      setBodyHeight(max);
     };
 
     update();
 
     const observer = new ResizeObserver(update);
     observer.observe(viewport);
+    for (const child of measure.children) {
+      observer.observe(child);
+    }
     return () => observer.disconnect();
   }, [items]);
 
@@ -134,7 +137,7 @@ export function CyclingContent({ items }: CyclingContentProps) {
       <div
         ref={bodyViewportRef}
         className={styles.bodyViewport}
-        style={bodyMinHeight != null ? { minHeight: bodyMinHeight } : undefined}
+        style={bodyHeight != null ? { height: bodyHeight } : undefined}
       >
         <div
           ref={bodyMeasureRef}
@@ -142,12 +145,14 @@ export function CyclingContent({ items }: CyclingContentProps) {
           aria-hidden="true"
         >
           {items.map((entry, i) => (
-            <div key={i} className="text-xl">
+            <div key={i} className={cx("text-xl", styles.bodyPanel)}>
               {entry.body}
             </div>
           ))}
         </div>
-        <div className={cx("text-xl", motionClass)}>{item.body}</div>
+        <div className={cx("text-xl", styles.bodyPanel, motionClass)}>
+          {item.body}
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,14 @@
 import { Page } from "@/components/Page";
 import { GradientSection, SectionContent } from "@/components/GradientSection";
-import { Card, CardGrid } from "@/components/Card";
+import { type CardData } from "@/components/Card";
 import { CyclingContent } from "@/components/CyclingContent";
-import { DropdownButton } from "@/components/DropdownButton";
+import { LearnMoreDropdown } from "@/components/LearnMoreDropdown";
 import { LiveTime } from "@/components/LiveTime";
+import { ProjectFilterProvider } from "@/components/ProjectFilter";
+import { ProjectGrid } from "@/components/ProjectGrid";
 import { RotatingText } from "@/components/RotatingText";
+import { Tooltip } from "@/components/Tooltip";
+import { Button } from "@/components/Button";
 import hikeyCover from "@/public/projects/card-faces/hikey.png";
 import kowalskiCover from "@/public/projects/card-faces/kowalski.png";
 import campKesemCover from "@/public/projects/card-faces/kesem.png";
@@ -17,7 +21,7 @@ import smoothTalkingPickpocketCover from "@/public/projects/card-faces/smoothtal
 import llmWatermarkingCover from "@/public/projects/card-faces/attribute.png";
 import moveMoveMelonCover from "@/public/projects/card-faces/mmmsteam.jpg";
 
-const projects = [
+const projects: CardData[] = [
   {
     title: "Crease",
     subtitle: "Lead Engineer · USC AGP",
@@ -42,7 +46,7 @@ const projects = [
     year: "2024-Present",
     description:
       "From hackathons to beach bonfires, late-night debugging to pumpkin painting, Scope is dedicated to fostering a tight-knit community of students who love Computer Science, and want to learn and build together.",
-    tags: ["Software Engineer", "Go", "Docker", "Kubernetes", "Leadership"],
+    tags: ["Software", "Go", "Docker", "Kubernetes", "Leadership"],
     image: scopeCover,
   },
   {
@@ -51,7 +55,7 @@ const projects = [
     year: "2026",
     description:
       "Re-imagining the future of education in a post-AI world by transforming any assignment into a Socratic dialogue. Actual classroom use by 100s of students.",
-    tags: ["Software", "Go", "Docker", "Kubernetes"],
+    tags: ["Software", "AI", "Education", "Full Stack", "React", "Typescript"],
     image: socraCover,
   },
   {
@@ -78,7 +82,7 @@ const projects = [
     year: "2026",
     description:
       "Stops AI coding agents from writing spaghetti code by providing them with original heuristics and guidance that they could never fit into their context window alone.",
-    tags: ["Software", "Python", "Agentic AI"],
+    tags: ["Software", "Python", "Agentic AI", "AI"],
     image: kowalskiCover,
   },
   {
@@ -119,9 +123,19 @@ const projects = [
   },
 ];
 
+const filterTags = [
+  "Game Dev",
+  "Software",
+  "Research",
+  "Leadership",
+  "AI",
+  "Volunteer",
+];
+
 export default function Home() {
   return (
-    <Page>
+    <ProjectFilterProvider>
+      <Page>
       <GradientSection
         tone="dark"
         stars
@@ -138,16 +152,7 @@ export default function Home() {
               </p>
               <div className="mt-16 flex flex-wrap items-center gap-3">
                 <p className="text-xl font-semibold">Learn more about...</p>
-                <DropdownButton
-                  defaultValue="everything"
-                  menuMinWidth="15rem"
-                  options={[
-                    { label: "the Software Engineer", value: "software" },
-                    { label: "the Game Developer", value: "gamedev" },
-                    { label: "the Researcher", value: "research" },
-                    { label: "Everything", value: "everything" },
-                  ]}
-                />
+                <LearnMoreDropdown />
               </div>
             </div>
             <CyclingContent
@@ -162,7 +167,7 @@ export default function Home() {
                         fixedWidth
                         words={["Research", "Games", "Software"]}
                       />{" "}
-                      that shatter all expectations and force you to take a step
+                      that shatters all expectations and force you to take a step
                       back and think. I live for ideas that genuinely excite me,
                       and sharing that excitement with others.
                     </>
@@ -182,7 +187,11 @@ export default function Home() {
                   title: "When",
                   body: (
                     <>
-                      <LiveTime />
+                      <p>Happy to chat about any ideas or opportunities, anytime.</p>
+                      <br/>
+                      <LiveTime /><p>is as good a time as any. Don't hesitate to reach out, I don't bite!</p>
+                      <br/>
+                      <Button href="#contact">Contact Me</Button>
                     </>
                   ),
                 },
@@ -190,8 +199,21 @@ export default function Home() {
                   title: "Where",
                   body: (
                     <>
-                      Usually Los Angeles or Boston. Anywhere with cheap eats is
-                      a good guess.
+                      <p>I&apos;m based primarily in <strong>Los Angeles</strong> and <strong>Boston</strong>, but open to opportunities anywhere. <br/> <br/> <strong>Some of my favorite places</strong> <Tooltip content="Fast food places, that is." /> </p>
+                      <ul className="star-list">
+                        <li>
+                          <span className="font-semibold">Needham Street McDonald&apos;s</span>
+                          <span className="block text-sm opacity-70">111 Needham St, Newton Upper Falls, MA 02464</span>
+                        </li>
+                        <li>
+                          <span className="font-semibold">Taco Bell on Fig</span>
+                          <span className="block text-sm opacity-70">2722 S Figueroa St, Los Angeles, CA 90007</span>
+                        </li>
+                        <li>
+                          <span className="font-semibold">Campus Burgers near Cal</span>
+                          <span className="block text-sm opacity-70">2506 Channing Way, Berkeley, CA 94720</span>
+                        </li>
+                      </ul>
                     </>
                   ),
                 },
@@ -199,13 +221,13 @@ export default function Home() {
                   title: "How",
                   body: (
                     <>
-                      Still figuring this one out. Always open to any hot tips!
+                      <p>Still figuring this one out.</p>
                     </>
                   ),
                 },
                 {
                   title: "Why",
-                  body: <>Because why not!</>,
+                  body: <><p> I do what I love, and love what I do. Every project I work on is a chance to to learn something new, but also an attempt to make the world just a little bit better. Our world is full of so much beauty, and fascinating problems, I do this because I can't help but explore it.</p></>,
                 },
               ]}
             />
@@ -230,13 +252,10 @@ export default function Home() {
           <h2 className="mt-8 text-6xl font-extrabold tracking-tight">
             Cool stuff I work on
           </h2>
-          <CardGrid>
-            {projects.map((project) => (
-              <Card key={project.title} {...project} />
-            ))}
-          </CardGrid>
+          <ProjectGrid projects={projects} tags={filterTags} />
         </SectionContent>
       </GradientSection>
     </Page>
+    </ProjectFilterProvider>
   );
 }

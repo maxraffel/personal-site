@@ -1,0 +1,23 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.filterButton {
+  font-size: 0.95rem;
+  padding: 0.3rem 0.7rem;
+}
+
+.filterButton[aria-pressed="true"] {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+}
+
+.filterButton[aria-pressed="true"]:hover {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+}

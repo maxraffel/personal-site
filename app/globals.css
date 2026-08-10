@@ -17,3 +17,37 @@ body {
   color: var(--foreground);
   font-family: var(--font-syne), system-ui, sans-serif;
 }
+
+/* Tailwind preflight zeroes list styles; restore them for content lists. */
+ul,
+ol {
+  list-style: revert;
+  margin-block: 0.5em;
+  padding-inline-start: 1.5em;
+}
+
+ul.star-list {
+  list-style: none;
+  padding-inline-start: 1.35em;
+}
+
+ul.star-list > li {
+  position: relative;
+}
+
+ul.star-list > li + li {
+  margin-top: 0.55em;
+}
+
+ul.star-list > li::before {
+  content: "";
+  position: absolute;
+  left: -1.25em;
+  top: 0.35em;
+  width: 0.75em;
+  height: 0.75em;
+  background-color: currentColor;
+  -webkit-mask: url("/star.svg") center / contain no-repeat;
+  mask: url("/star.svg") center / contain no-repeat;
+}
+

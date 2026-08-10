@@ -14,7 +14,11 @@ export type CardData = {
   imageAlt?: string;
 };
 
-type CardProps = CardData;
+type CardProps = CardData & {
+  highlighted?: boolean;
+  dimmed?: boolean;
+  activeTag?: string | null;
+};
 
 export function Card({
   title,
@@ -24,9 +28,18 @@ export function Card({
   tags,
   image,
   imageAlt = "",
+  highlighted = false,
+  dimmed = false,
+  activeTag = null,
 }: CardProps) {
   return (
-    <article className={styles.card}>
+    <article
+      className={cx(
+        styles.card,
+        highlighted && styles.highlighted,
+        dimmed && styles.dimmed,
+      )}
+    >
       <div className={styles.cover}>
         <Image
           src={image}
@@ -46,7 +59,13 @@ export function Card({
         {tags.length > 0 ? (
           <ul className={styles.tags}>
             {tags.map((tag) => (
-              <li key={tag} className={styles.tag}>
+              <li
+                key={tag}
+                className={cx(
+                  styles.tag,
+                  activeTag === tag && styles.tagActive,
+                )}
+              >
                 {tag}
               </li>
             ))}

@@ -1,0 +1,56 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  cursor: help;
+  opacity: 0.7;
+  outline: none;
+}
+
+.icon:hover,
+.icon:focus-visible {
+  opacity: 1;
+}
+
+.tip {
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 16rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.35rem;
+  background: #111735;
+  color: #f7f7f5;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 120ms ease, visibility 120ms ease;
+  z-index: 10;
+}
+
+.root:hover .tip,
+.root:focus-within .tip {
+  opacity: 1;
+  visibility: visible;
+}
