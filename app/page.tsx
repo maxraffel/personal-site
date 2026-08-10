@@ -15,6 +15,7 @@ import scopeCover from "@/public/projects/card-faces/scope.png";
 import openYourBrowserCover from "@/public/projects/card-faces/openyourbrowser.png";
 import smoothTalkingPickpocketCover from "@/public/projects/card-faces/smoothtalkingpickpocket.png";
 import llmWatermarkingCover from "@/public/projects/card-faces/attribute.png";
+import moveMoveMelonCover from "@/public/projects/card-faces/mmmsteam.jpg";
 
 const projects = [
   {
@@ -82,7 +83,7 @@ const projects = [
   },
   {
     title: "Camp Kesem",
-    subtitle: "Operations Coordinator · Kesem USC",
+    subtitle: "Operations Coord · Kesem USC",
     year: "2025-Present",
     description:
       "Handled logistics and programming for a week-long summer camp for 70+ children whose families are affected by cancer.",
@@ -106,6 +107,15 @@ const projects = [
       "A narrative-driven pickpocketing adventure where players must make conversation while stealing from a cast of memorable characters.",
     tags: ["Game Dev", "C#", "Unity"],
     image: smoothTalkingPickpocketCover,
+  },
+  {
+    title: "Move, Move, Melon!!",
+    subtitle: "QA Lead/Engineer · USC AGP",
+    year: "2025-2026",
+    description:
+      "A cartoony 3D on-rails runner where you play Melon, a very determined hamster in her quest to roll the biggest scoop of ice cream ever. Play now on App Store, Google Play, and Steam.",
+    tags: ["Game Dev", "C#", "Unity", "QA"],
+    image: moveMoveMelonCover,
   },
 ];
 

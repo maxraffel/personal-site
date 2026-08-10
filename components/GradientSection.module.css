@@ -15,6 +15,10 @@
   --section-fg: #ffffff;
 }
 
+.withStars {
+  overflow: hidden;
+}
+
 .withStars > :not(.starFieldHost) {
   position: relative;
   z-index: 1;
