@@ -192,9 +192,12 @@ export default function Home() {
                   body: (
                     <>
                       <p>Happy to chat about any ideas or opportunities, anytime.</p>
-                      <br/>
-                      <LiveTime /><p>is as good a time as any. Don't hesitate to reach out, I don't bite!</p>
-                      <br/>
+                      <br />
+                      <p>
+                        <LiveTime /><br/>is as good a time as any. Don&apos;t
+                        hesitate to reach out, I don&apos;t bite!
+                      </p>
+                      <br />
                       <Button href="#contact">Contact Me</Button>
                     </>
                   ),

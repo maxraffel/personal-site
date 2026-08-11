@@ -1,10 +1,12 @@
 .root {
-  white-space: nowrap;
   font-weight: bold;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .clock {
   display: inline-block;
+  white-space: nowrap;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   text-align: left;
