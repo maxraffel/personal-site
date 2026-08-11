@@ -141,8 +141,9 @@ export default function Home() {
       <GradientSection
         tone="dark"
         stars
+        overscroll="top"
         stops={["#090B1C", "#111735 60%", "#1D2C5C 100%"]}
-        className="min-h-[80vh]"
+        className="min-h-[80vh] min-h-[80dvh]"
         id="home"
       >
         <SectionContent>
@@ -264,7 +265,12 @@ export default function Home() {
           <ProjectGrid projects={projects} tags={filterTags} />
         </SectionContent>
       </GradientSection>
-      <GradientSection tone="dark" stops={["#AED1BB", "#BCA885 10%"]} id="contact">
+      <GradientSection
+        tone="dark"
+        overscroll="bottom"
+        stops={["#AED1BB", "#BCA885 10%"]}
+        id="contact"
+      >
         <SectionContent>
           <div className="grid min-w-0 w-full flex-1 content-center items-center gap-8 md:grid-cols-2">
             <div className="min-w-0">

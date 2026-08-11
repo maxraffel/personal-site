@@ -20,6 +20,8 @@ type GradientSectionProps = ComponentPropsWithoutRef<"section"> & {
   tone: SectionTone;
   /** Scatter twinkling stars across the section. */
   stars?: boolean;
+  /** Extend this section's edge color into mobile overscroll bounce. */
+  overscroll?: "top" | "bottom";
 };
 
 export function GradientSection({
@@ -27,12 +29,13 @@ export function GradientSection({
   stops,
   tone,
   stars = false,
+  overscroll,
   className,
   style,
   children,
   ...props
 }: GradientSectionProps) {
-  return (
+  const section = (
     <section
       data-tone={tone}
       className={cx(styles.section, stars && styles.withStars, className)}
@@ -47,6 +50,19 @@ export function GradientSection({
       ) : null}
       {children}
     </section>
+  );
+
+  if (!overscroll) return section;
+
+  return (
+    <div
+      className={cx(
+        overscroll === "top" && styles.overscrollTop,
+        overscroll === "bottom" && styles.overscrollBottom,
+      )}
+    >
+      {section}
+    </div>
   );
 }
 

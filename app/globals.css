@@ -3,7 +3,6 @@
 :root {
   --background: #f7f7f5;
   --foreground: #171717;
-  /* Match first/last section ends for mobile overscroll rubber-banding. */
   --overscroll-top: #090b1c;
   --overscroll-bottom: #bca885;
 }
@@ -15,20 +14,37 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/*
+  Safari overscroll uses body background-color (not html gradients).
+  Scroll-driven animation progressively matches the end you're near
+  where supported; box-shadow on first/last sections covers Safari.
+*/
 html {
-  background: linear-gradient(
-    to bottom,
-    var(--overscroll-top) 0%,
-    var(--overscroll-top) 50%,
-    var(--overscroll-bottom) 50%,
-    var(--overscroll-bottom) 100%
-  );
+  background-color: var(--overscroll-top);
 }
 
 body {
-  background: transparent;
+  min-height: 100%;
+  min-height: 100dvh;
+  background-color: var(--overscroll-top);
   color: var(--foreground);
   font-family: var(--font-syne), system-ui, sans-serif;
+}
+
+@supports (animation-timeline: scroll()) {
+  body {
+    animation: overscroll-bg linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes overscroll-bg {
+    from {
+      background-color: var(--overscroll-top);
+    }
+    to {
+      background-color: var(--overscroll-bottom);
+    }
+  }
 }
 
 /* Tailwind preflight zeroes list styles; restore them for content lists. */

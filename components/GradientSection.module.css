@@ -24,6 +24,21 @@
   z-index: 1;
 }
 
+/*
+  Extend section color into the overscroll rubber-band area.
+  Wrapper stays overflow-visible so shadows aren't clipped by .withStars.
+  Safari paints box-shadow into overscroll; 100dvh covers modern mobile viewports.
+*/
+.overscrollTop {
+  box-shadow: 0 -100vh 0 100vh var(--overscroll-top, #090b1c);
+  box-shadow: 0 -100dvh 0 100dvh var(--overscroll-top, #090b1c);
+}
+
+.overscrollBottom {
+  box-shadow: 0 100vh 0 100vh var(--overscroll-bottom, #bca885);
+  box-shadow: 0 100dvh 0 100dvh var(--overscroll-bottom, #bca885);
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -31,8 +46,10 @@
   width: 100%;
   max-width: 72rem;
   margin-inline: auto;
-  padding-inline: 1.5rem;
-  padding-block: 4rem;
   min-width: 0;
   box-sizing: border-box;
+  padding-top: max(4rem, env(safe-area-inset-top, 0px));
+  padding-bottom: max(4rem, env(safe-area-inset-bottom, 0px));
+  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
 }
