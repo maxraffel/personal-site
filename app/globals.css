@@ -3,6 +3,9 @@
 :root {
   --background: #f7f7f5;
   --foreground: #171717;
+  /* Match first/last section ends for mobile overscroll rubber-banding. */
+  --overscroll-top: #090b1c;
+  --overscroll-bottom: #bca885;
 }
 
 @theme inline {
@@ -12,8 +15,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  background: linear-gradient(
+    to bottom,
+    var(--overscroll-top) 0%,
+    var(--overscroll-top) 50%,
+    var(--overscroll-bottom) 50%,
+    var(--overscroll-bottom) 100%
+  );
+}
+
 body {
-  background: var(--background);
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-syne), system-ui, sans-serif;
 }
