@@ -1,0 +1,99 @@
+.form {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 500;
+  opacity: 0.65;
+}
+
+.input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: color-mix(in srgb, currentColor 65%, transparent);
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 9rem;
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
+.toast {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 50;
+  max-width: min(22rem, calc(100vw - 2rem));
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 28%);
+  animation: toastIn 180ms ease-out;
+}
+
+.toastSuccess {
+  background: #173528;
+  border-color: color-mix(in srgb, #7dcea0 55%, transparent);
+  color: #e8fff1;
+}
+
+.toastError {
+  background: #3a1717;
+  border-color: color-mix(in srgb, #e08a8a 55%, transparent);
+  color: #ffe8e8;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

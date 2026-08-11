@@ -9,6 +9,7 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 import { RotatingText } from "@/components/RotatingText";
 import { Tooltip } from "@/components/Tooltip";
 import { Button } from "@/components/Button";
+import { ContactForm } from "@/components/ContactForm";
 import hikeyCover from "@/public/projects/card-faces/hikey.png";
 import kowalskiCover from "@/public/projects/card-faces/kowalski.png";
 import campKesemCover from "@/public/projects/card-faces/kesem.png";
@@ -255,12 +256,28 @@ export default function Home() {
         </SectionContent>
       </GradientSection>
 
-      <GradientSection tone="light" stops={["#B7D6E4", "#B9D7C4 5%"]}>
+      <GradientSection tone="light" stops={["#B7D6E4", "#AED1BB 5%"]} id="projects">
         <SectionContent>
           <h2 className="mt-8 text-6xl font-extrabold tracking-tight">
             Cool stuff I work on
           </h2>
           <ProjectGrid projects={projects} tags={filterTags} />
+        </SectionContent>
+      </GradientSection>
+      <GradientSection tone="dark" stops={["#AED1BB", "#BCA885 10%"]} id="contact">
+        <SectionContent>
+          <div className="grid flex-1 content-center items-center gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="text-6xl font-extrabold tracking-tight">
+                Contact Max
+              </h2>
+              <p className="mt-3 text-md opacity-70">
+                Questions, opportunities, or just want to say hi?
+                <br /> Shoot me a message — I'll get back to you jiffy quick!
+              </p>
+            </div>
+            <ContactForm />
+          </div>
         </SectionContent>
       </GradientSection>
     </Page>
