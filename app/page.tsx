@@ -20,6 +20,7 @@ import openYourBrowserCover from "@/public/projects/card-faces/openyourbrowser.p
 import smoothTalkingPickpocketCover from "@/public/projects/card-faces/smoothtalkingpickpocket.png";
 import llmWatermarkingCover from "@/public/projects/card-faces/attribute.png";
 import moveMoveMelonCover from "@/public/projects/card-faces/mmmsteam.jpg";
+import { RotatingContent } from "@/components/RotatingContent";
 
 const projects: CardData[] = [
   {
@@ -141,6 +142,7 @@ export default function Home() {
         stars
         stops={["#090B1C", "#111735 60%", "#1D2C5C 100%"]}
         className="min-h-[80vh]"
+        id="home"
       >
         <SectionContent>
           <div className="grid flex-1 content-center gap-8 md:grid-cols-2">
@@ -238,12 +240,18 @@ export default function Home() {
       <GradientSection
         tone="dark"
         stops={["#1D2C5C", "#557BB0 50%", "#B7D6E4 100%"]}
+        id="about"
       >
         <SectionContent>
-          <h2 className="text-2xl font-semibold tracking-tight">About</h2>
-          <p className="mt-3 max-w-xl opacity-70">
-            Pass multiple stops with optional positions for uneven blends.
-          </p>
+          <RotatingContent
+            autoRotate
+            autoRotateInterval={10}
+            items={[
+              { title: "Research", body: <p>I have the privilege of working under the mentorship of <a href="https://mimihuang.github.io/" target="_blank" rel="noopener noreferrer">Miryam Mi-Ying Huang</a>, a current postdoc at CMU. My primary research interests are in AI security, as well as quantum cryptography. I am interested in exploring potential Summer 2027 research opportunities in Theoretical Computer Science.</p> },
+              { title: "Software", body: <p>I like to make software that actually gets used. So far, I have made a marketplace that has processed over $100,000 in transactions, and an AI learning tool with real classroom use by 100s of students. I am always looking for my next high-impact role, and am currently pursuing Summer 2027 software engineering internship opportunities.</p> },
+              { title: "Game Dev", body: <p>I've been lucky to be a part of or lead dev teams for multiple games released across Steam, the App Store, and Google Play. Currently I am excited to be the Engineering Lead for Crease, which will be releasing in May 2027. I would love to keep making games, and am currently looking for opportunities in the games industry for Summer 2027! While the bulk of my experience has been in Unity, I am interested in exploring all game engines and technologies.</p> },
+            ]}
+          />
         </SectionContent>
       </GradientSection>
 

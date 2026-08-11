@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 
-const dropdownToTag: Record<string, string | null> = {
+export const dropdownToTag: Record<string, string | null> = {
   software: "Software",
   gamedev: "Game Dev",
   research: "Research",
@@ -15,6 +15,7 @@ const dropdownToTag: Record<string, string | null> = {
 };
 
 type ProjectFilterContextValue = {
+  dropdownValue: string;
   selectedTag: string | null;
   setSelectedTag: (tag: string | null) => void;
   selectFromDropdown: (value: string) => void;
@@ -25,14 +26,17 @@ const ProjectFilterContext = createContext<ProjectFilterContextValue | null>(
 );
 
 export function ProjectFilterProvider({ children }: { children: ReactNode }) {
+  const [dropdownValue, setDropdownValue] = useState("everything");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   return (
     <ProjectFilterContext.Provider
       value={{
+        dropdownValue,
         selectedTag,
         setSelectedTag,
         selectFromDropdown: (value) => {
+          setDropdownValue(value);
           setSelectedTag(value in dropdownToTag ? dropdownToTag[value] : null);
         },
       }}
@@ -48,4 +52,8 @@ export function useProjectFilter() {
     throw new Error("useProjectFilter must be used within ProjectFilterProvider");
   }
   return value;
+}
+
+export function useProjectFilterOptional() {
+  return useContext(ProjectFilterContext);
 }

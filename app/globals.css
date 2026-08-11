@@ -51,3 +51,7 @@ ul.star-list > li::before {
   mask: url("/star.svg") center / contain no-repeat;
 }
 
+a {
+  text-decoration: underline;
+  font-weight: 500;
+}

@@ -10,7 +10,12 @@ export function LearnMoreDropdown() {
     <DropdownButton
       defaultValue="everything"
       menuMinWidth="15rem"
-      onSelect={selectFromDropdown}
+      onSelect={(value) => {
+        selectFromDropdown(value);
+        document
+          .getElementById("about")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }}
       options={[
         { label: "the Software Engineer", value: "software" },
         { label: "the Game Developer", value: "gamedev" },
