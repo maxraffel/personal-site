@@ -266,9 +266,9 @@ export default function Home() {
       </GradientSection>
       <GradientSection tone="dark" stops={["#AED1BB", "#BCA885 10%"]} id="contact">
         <SectionContent>
-          <div className="grid flex-1 content-center items-center gap-8 md:grid-cols-2">
-            <div>
-              <h2 className="text-6xl font-extrabold tracking-tight">
+          <div className="grid min-w-0 w-full flex-1 content-center items-center gap-8 md:grid-cols-2">
+            <div className="min-w-0">
+              <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
                 Contact Max
               </h2>
               <p className="mt-3 text-md opacity-70">
@@ -276,7 +276,9 @@ export default function Home() {
                 <br /> Shoot me a message — I'll get back to you jiffy quick!
               </p>
             </div>
-            <ContactForm />
+            <div className="min-w-0 w-full">
+              <ContactForm />
+            </div>
           </div>
         </SectionContent>
       </GradientSection>
