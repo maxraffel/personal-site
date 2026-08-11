@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Personal Site",
-  description: "Personal site",
+  title: "Max Raffel",
+  description: "Portfolio of Max Raffel, a Software Engineer, Game Developer, and Researcher",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
