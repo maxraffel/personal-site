@@ -1,3 +1,24 @@
+.cardLink {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  outline-offset: 3px;
+  transition: transform 180ms ease;
+}
+
+.cardLink:hover {
+  transform: translateY(-2px);
+}
+
+.cardLink:hover > *,
+.cardLink:focus-visible > * {
+  border-color: color-mix(in srgb, currentColor 42%, transparent);
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, currentColor 12%, transparent);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;

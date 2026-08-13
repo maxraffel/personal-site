@@ -1,15 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Syne } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const syne = Syne({
+const syne = localFont({
+  src: "./fonts/Syne-Variable.woff2",
   variable: "--font-syne",
-  subsets: ["latin"],
+  weight: "400 800",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: "./fonts/GeistMono-Variable.woff2",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

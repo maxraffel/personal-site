@@ -14,6 +14,13 @@ export type CardData = {
   imageAlt?: string;
 };
 
+/** Project card data plus deep-link slug and optional modal body. */
+export type ProjectData = CardData & {
+  slug: string;
+  /** Arbitrary modal content. Falls back to the card summary when omitted. */
+  content?: ReactNode;
+};
+
 type CardProps = CardData & {
   highlighted?: boolean;
   dimmed?: boolean;

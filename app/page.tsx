@@ -1,6 +1,6 @@
 import { Page } from "@/components/Page";
 import { GradientSection, SectionContent } from "@/components/GradientSection";
-import { type CardData } from "@/components/Card";
+import { type ProjectData } from "@/components/Card";
 import { CyclingContent } from "@/components/CyclingContent";
 import { LearnMoreDropdown } from "@/components/LearnMoreDropdown";
 import { LiveTime } from "@/components/LiveTime";
@@ -23,8 +23,9 @@ import llmWatermarkingCover from "@/public/projects/card-faces/attribute.png";
 import moveMoveMelonCover from "@/public/projects/card-faces/mmmsteam.jpg";
 import { RotatingContent } from "@/components/RotatingContent";
 
-const projects: CardData[] = [
+const projects: ProjectData[] = [
   {
+    slug: "crease",
     title: "Crease",
     subtitle: "Lead Engineer · USC AGP",
     year: "2026-Present",
@@ -34,6 +35,7 @@ const projects: CardData[] = [
     image: creaseCover,
   },
   {
+    slug: "attribute-based-watermarking",
     title: "Attribute-based Watermarking",
     subtitle: "Researcher",
     year: "2026",
@@ -43,6 +45,7 @@ const projects: CardData[] = [
     image: llmWatermarkingCover,
   },
   {
+    slug: "scope",
     title: "Scope",
     subtitle: "President",
     year: "2024-Present",
@@ -52,6 +55,7 @@ const projects: CardData[] = [
     image: scopeCover,
   },
   {
+    slug: "socra",
     title: "Socra",
     subtitle: "Founding Engineer",
     year: "2026",
@@ -61,6 +65,7 @@ const projects: CardData[] = [
     image: socraCover,
   },
   {
+    slug: "advoctopus",
     title: "Advoctopus",
     subtitle: "G4C Student Challenge Finalist",
     year: "2026",
@@ -70,6 +75,7 @@ const projects: CardData[] = [
     image: advoctopusCover,
   },
   {
+    slug: "hi-key",
     title: "Hi-Key",
     subtitle: "Crowd Favorite · OpenAlpha x SCKeebies Game Jam",
     year: "2025",
@@ -79,6 +85,7 @@ const projects: CardData[] = [
     image: hikeyCover,
   },
   {
+    slug: "kowalski-analysis",
     title: "Kowalski Analysis",
     subtitle: "LaHacks 2026",
     year: "2026",
@@ -88,6 +95,7 @@ const projects: CardData[] = [
     image: kowalskiCover,
   },
   {
+    slug: "camp-kesem",
     title: "Camp Kesem",
     subtitle: "Operations Coord · Kesem USC",
     year: "2025-Present",
@@ -97,6 +105,7 @@ const projects: CardData[] = [
     image: campKesemCover,
   },
   {
+    slug: "open-your-browser",
     title: "Open Your Browser",
     subtitle: "Programming Lead · OpenAlpha",
     year: "2025",
@@ -106,6 +115,7 @@ const projects: CardData[] = [
     image: openYourBrowserCover,
   },
   {
+    slug: "smooth-talking-pickpocket",
     title: "Smooth Talking Pickpocket",
     subtitle: "Programming MVP · OpenAlpha",
     year: "2024",
@@ -115,6 +125,7 @@ const projects: CardData[] = [
     image: smoothTalkingPickpocketCover,
   },
   {
+    slug: "move-move-melon",
     title: "Move, Move, Melon!!",
     subtitle: "QA Lead/Engineer · USC AGP",
     year: "2025-2026",
